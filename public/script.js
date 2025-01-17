@@ -1,5 +1,5 @@
 // Establish a Socket.io connection
-const socket = io('http://localhost:3000');
+const socket = io('https://discussion-p6i2.onrender.com');
 
 let currentUser = null;
 let selectedPostType = 'discussion';
