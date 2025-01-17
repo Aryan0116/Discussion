@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect Feed</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="login-form">
+            <h2>Join EduConnect</h2>
+            <input type="text" id="nameInput" placeholder="Your Name" class="input-field">
+            <select id="roleSelect" class="input-field">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+            <button onclick="joinFeed()" class="btn">Join Feed</button>
+        </div>
+
+        <!-- Main Feed -->
+        <div id="mainFeed" class="main-feed">
+            <!-- Post Creation Box -->
+            <div class="post-box">
+                <textarea id="postContent" placeholder="Share your question or knowledge..." class="input-field" rows="3"></textarea>
+                <input type="file" id="imageUpload" class="input-field" accept="image/*">
+                <button onclick="createPost()" class="btn">Post</button>
+            </div>
+
+            <!-- Posts Container -->
+            <div id="postsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Online Users Sidebar -->
+    <div id="onlineUsers" class="online-users">
+        <h3>Online Users</h3>
+        <div id="usersList"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,606 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    height: 100%;
+}
+
+/* Login Overlay */
+#loginOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.login-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.login-logo {
+    font-size: 3rem;
+    color: #4267B2;
+    margin-bottom: 1rem;
+}
+
+.login-form .input-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.login-form .input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4267B2;
+}
+
+.login-form input,
+.login-form select {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#loginButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#loginButton:hover {
+    background-color: #365899;
+}
+
+/* Main Container */
+#mainContainer {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #4267B2;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header i {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.online-users,
+.quick-links {
+    margin-top: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-header i {
+    margin-right: 10px;
+}
+
+.quick-links ul {
+    list-style-type: none;
+}
+
+.quick-links li {
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.quick-links li i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Create Post Section */
+.create-post {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.post-type-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.type-button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #e4e6eb;
+    color: #4b4f56;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.type-button.active {
+    background-color: #4267B2;
+    color: white;
+}
+
+.post-input-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post-button {
+    background-color: #4267B2;
+    color: white;
+}
+
+/* Feed */
+.post {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+}
+
+.author-avatar {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.role-badge {
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.role-badge.student {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.role-badge.teacher {
+    background-color: #2196F3;
+    color: white;
+}
+
+.post-type-badge {
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: #e4e6eb;
+}
+
+.post-content {
+    margin: 15px 0;
+}
+
+.post-footer {
+    display: flex;
+    gap: 15px;
+}
+
+.reaction-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #606770;
+}
+
+.reaction-button i {
+    margin-right: 5px;
+}
+
+.comments-section {
+    margin-top: 15px;
+    border-top: 1px solid #e4e6eb;
+    padding-top: 15px;
+}
+
+.comment-input-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.comment-input-container input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.send-comment {
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    background-color: white;
+    padding: 20px;
+    border-left: 1 px solid #e4e6eb;
+}
+
+.notifications-panel,
+.trending-topics {
+    margin-bottom: 20px;
+}
+
+.notifications-panel .section-header,
+.trending-topics .section-header {
+    margin-bottom: 10px;
+}
+
+#notificationsList,
+#trendingList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notificationsList li,
+#trendingList li {
+    padding: 10px;
+    border-bottom: 1px solid #e4e6eb;
+}
+
+#notificationsList li:last-child,
+#trendingList li:last-child {
+    border-bottom: none;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4267B2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Your existing CSS here */
+
+/* New additions and modifications */
+
+/* Image preview */
+.image-preview-container {
+    position: relative;
+    margin: 10px 0;
+    max-width: 300px;
+}
+
+.image-preview-container img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+/* Emoji picker */
+.emoji-picker-container {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Feed filters */
+.feed-filters {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #4267B2;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    #mainContainer {
+        grid-template-columns: 200px 1fr 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    #mainContainer {
+        grid-template-columns: 200px 1fr;
+    }
+    .right-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #mainContainer {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none;
+    }
+    .main-content {
+        padding: 10px;
+    }
+    .create-post {
+        padding: 15px;
+    }
+    .post-type-selector {
+        flex-wrap: wrap;
+    }
+    .type-button {
+        flex-grow: 1;
+    }
+}
+
+/* Accessibility improvements */
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: 2px solid #4267B2;
+    outline-offset: 2px;
+}
+
+/* Dark mode (optional) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #18191A;
+        color: #E4E6EB;
+    }
+
+    .login-container, .create-post, .post, .right-sidebar {
+        background-color: #242526;
+        color: #E4E6EB;
+    }
+
+    input, textarea, select {
+        background-color: #3A3B3C;
+        color: #E4E6EB;
+        border-color: #3A3B3C;
+    }
+
+    .type-button, .filter-btn {
+        background-color: #3A3B3C;
+        color: #E4E6EB;
+    }
+
+    .type-button.active, .filter-btn.active {
+        background-color: #4267B2;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.post {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Improved button styles */
+button {
+    transition: transform 0.1s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Improved scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* Add to your existing CSS */
+.like-button.liked {
+    color: #4267B2;
+    font-weight: bold;
+}
+
+.comment {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 8px 0;
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.comment-content {
+    margin: 4px 0;
+}
+
+.comment-timestamp {
+    font-size: 0.8rem;
+    color: #65676B;
+}
+
+.comment-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.send-comment {
+    background-color: #4267B2;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.send-comment:hover {
+    background-color: #3b5f8f;
+}

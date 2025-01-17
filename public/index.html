@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA HUB - Student-Teacher Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart@latest/css/emoji-mart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/emoji-mart.js"></script>
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay">
+        <div class="login-container">
+            <h2>Welcome to COA HUB</h2>
+            <div class="login-logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nameInput" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-user-tag"></i>
+                    <select id="roleSelect" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <button id="loginButton" onclick="login()">
+                    <i class="fas fa-sign-in-alt"></i> Join Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div id="mainContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>COAHUB</h2>
+            </div>
+            
+            <!-- User Info Section -->
+            <div id="userInfo" class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details"></div>
+            </div>
+
+            <!-- Online Users Section -->
+            <div class="online-users">
+                <div class="section-header">
+                    <i class="fas fa-users"></i>
+                    <h3>Online Users</h3>
+                </div>
+                <div id="onlineUsersList"></div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <div class="section-header">
+                    <i class="fas fa-link"></i>
+                    <h3><HREF= PORT 4000>ROOMS</HREF></h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Create Post Section -->
+            <div class="create-post">
+                <div class="post-type-selector">
+                    <button class="type-button active" data-type="discussion">
+                        <i class="fas fa-comments"></i> Discussion
+                    </button>
+                    <button class="type-button" data-type="question">
+                        <i class="fas fa-question-circle"></i> Question
+                    </button>
+                    <button class="type-button" data-type="announcement">
+                        <i class="fas fa-bullhorn"></i> Announcement
+                    </button>
+                </div>
+                <div class="post-input-container">
+                    <textarea id="postContent" placeholder="Share your thoughts, questions, or announcements..."></textarea>
+                    
+                    <!-- Image Preview Container -->
+                    <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button class="remove-image" onclick="removeImage()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="post-actions">
+                        <!-- File Input for Images -->
+                        <label for="imageInput" class="attach-button">
+                            <i class="fas fa-image"></i>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                        </label>
+                        
+                        <!-- Emoji Picker Trigger -->
+                        <button class="emoji-button" onclick="toggleEmojiPicker()">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        
+                        <!-- Emoji Picker Container -->
+                        <div id="emojiPicker" class="emoji-picker-container" style="display: none;"></div>
+
+                        <button class="post-button" onclick="createPost()">
+                            <i class="fas fa-paper-plane"></i> Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed Filters -->
+            <div class="feed-filters">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-globe"></i> All Posts
+                    </button>
+                    <button class="filter-btn" data-filter="discussion">
+                        <i class="fas fa-comments"></i> Discussions
+                    </button>
+                    <button class="filter-btn" data-filter="question">
+                        <i class="fas fa-question-circle"></i> Questions
+                    </button>
+                    <button class="filter-btn" data-filter="announcement">
+                        <i class="fas fa-bullhorn"></i> Announcements
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feed Section -->
+            <div class="feed" id="feed">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Templates for dynamic content -->
+    <template id="postTemplate">
+        <div class="post">
+            <div class="post-header">
+                <div class="author-info">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="author -name"></div>
+                </div>
+                <div class="post-type"></div>
+            </div>
+            <div class="post-content"></div>
+            <div class="post-actions">
+                <button class="like-button">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+                <button class="comment-button">
+                    <i class="fas fa-comment-alt"></i>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="onlineUserTemplate">
+        <div class="online-user">
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-name"></div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
