@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "*",
+        origin: "https://discussion-p6i2.onrender.com",
         methods: ["GET", "POST"]
     }
 });
